@@ -10,7 +10,7 @@ License: GNU General Public License v3
 Keywords: elmer_circuitbuilder
 Platform: UNKNOWN
 Classifier: Development Status :: 2 - Pre-Alpha
-Classifier: Intended Audience :: Users
+Classifier: Intended Audience :: Developers
 Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
 Classifier: Natural Language :: English
 Classifier: Programming Language :: Python :: 3
