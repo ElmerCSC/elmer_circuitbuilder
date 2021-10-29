@@ -40,7 +40,7 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/ElmerCSC/elmer_circuitbuilder.git',
-    version='v0.0.1',
+    version='v0.0.2',
     zip_safe=False,
     extras_require={"dev":["pytest>=3.7"], },
     py_modules=["elmer_circuitbuilder"],
