@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: elmer-circuitbuilder
-Version: 0.0.1
+Version: 0.0.2
 Summary: Python module for creating the circuit simulation definitions for Elmer FEM. The circuit definitions enable easy setup of coils (e.g. massive, stranded, and foil) in 2D and 3D for magnetodynamics applications.
 Home-page: https://github.com/ElmerCSC/elmer_circuitbuilder.git
 Author: Jonathan Velasco
@@ -9,13 +9,14 @@ Maintainer: CSC - IT Center for Science :  ElmerFEM Developers
 License: GNU General Public License v3
 Keywords: elmer_circuitbuilder
 Platform: UNKNOWN
-Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Development Status :: 3 - Alpha
 Classifier: Intended Audience :: Developers
 Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
 Classifier: Natural Language :: English
 Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
 Classifier: Programming Language :: Python :: 3.9
-Requires-Python: >=3.9
+Requires-Python: >=3.7
 Provides-Extra: dev
 License-File: LICENSE
 License-File: AUTHORS.rst

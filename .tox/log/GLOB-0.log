@@ -1,6 +1,8 @@
 action: GLOB, msg: packaging
 cwd: /Users/jonathanvelasco/Documents/elmer/elmer_circuitbuilder
-cmd: /Library/Frameworks/Python.framework/Versions/3.9/bin/python3 setup.py sdist --formats=zip --dist-dir /Users/jonathanvelasco/Documents/elmer/elmer_circuitbuilder/.tox/dist
+cmd: /Library/Frameworks/Python.framework/Versions/3.9/bin/python3 setup.py sdist --formats=zip --dist-dir .tox/dist
+/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/setuptools/dist.py:484: UserWarning: Normalizing 'v0.0.2' to '0.0.2'
+  warnings.warn(tmpl.format(**locals()))
 running sdist
 running egg_info
 writing elmer_circuitbuilder/elmer_circuitbuilder.egg-info/PKG-INFO
@@ -17,73 +19,72 @@ adding license file 'LICENSE'
 adding license file 'AUTHORS.rst'
 writing manifest file 'elmer_circuitbuilder/elmer_circuitbuilder.egg-info/SOURCES.txt'
 running check
-creating elmer_circuitbuilder-0.0.1
-creating elmer_circuitbuilder-0.0.1/docs
-creating elmer_circuitbuilder-0.0.1/elmer_circuitbuilder
-creating elmer_circuitbuilder-0.0.1/elmer_circuitbuilder/elmer_circuitbuilder.egg-info
-creating elmer_circuitbuilder-0.0.1/tests
-copying files to elmer_circuitbuilder-0.0.1...
-copying AUTHORS.rst -> elmer_circuitbuilder-0.0.1
-copying CONTRIBUTING.rst -> elmer_circuitbuilder-0.0.1
-copying HISTORY.rst -> elmer_circuitbuilder-0.0.1
-copying LICENSE -> elmer_circuitbuilder-0.0.1
-copying MANIFEST.in -> elmer_circuitbuilder-0.0.1
-copying README.rst -> elmer_circuitbuilder-0.0.1
-copying setup.cfg -> elmer_circuitbuilder-0.0.1
-copying setup.py -> elmer_circuitbuilder-0.0.1
-copying docs/Makefile -> elmer_circuitbuilder-0.0.1/docs
-copying docs/authors.rst -> elmer_circuitbuilder-0.0.1/docs
-copying docs/conf.py -> elmer_circuitbuilder-0.0.1/docs
-copying docs/contributing.rst -> elmer_circuitbuilder-0.0.1/docs
-copying docs/history.rst -> elmer_circuitbuilder-0.0.1/docs
-copying docs/index.rst -> elmer_circuitbuilder-0.0.1/docs
-copying docs/installation.rst -> elmer_circuitbuilder-0.0.1/docs
-copying docs/make.bat -> elmer_circuitbuilder-0.0.1/docs
-copying docs/readme.rst -> elmer_circuitbuilder-0.0.1/docs
-copying docs/usage.rst -> elmer_circuitbuilder-0.0.1/docs
-copying elmer_circuitbuilder/elmer_circuitbuilder.py -> elmer_circuitbuilder-0.0.1/elmer_circuitbuilder
-copying elmer_circuitbuilder/elmer_circuitbuilder.egg-info/PKG-INFO -> elmer_circuitbuilder-0.0.1/elmer_circuitbuilder/elmer_circuitbuilder.egg-info
-copying elmer_circuitbuilder/elmer_circuitbuilder.egg-info/SOURCES.txt -> elmer_circuitbuilder-0.0.1/elmer_circuitbuilder/elmer_circuitbuilder.egg-info
-copying elmer_circuitbuilder/elmer_circuitbuilder.egg-info/dependency_links.txt -> elmer_circuitbuilder-0.0.1/elmer_circuitbuilder/elmer_circuitbuilder.egg-info
-copying elmer_circuitbuilder/elmer_circuitbuilder.egg-info/not-zip-safe -> elmer_circuitbuilder-0.0.1/elmer_circuitbuilder/elmer_circuitbuilder.egg-info
-copying elmer_circuitbuilder/elmer_circuitbuilder.egg-info/requires.txt -> elmer_circuitbuilder-0.0.1/elmer_circuitbuilder/elmer_circuitbuilder.egg-info
-copying elmer_circuitbuilder/elmer_circuitbuilder.egg-info/top_level.txt -> elmer_circuitbuilder-0.0.1/elmer_circuitbuilder/elmer_circuitbuilder.egg-info
-copying tests/__init__.py -> elmer_circuitbuilder-0.0.1/tests
-copying tests/test_elmer_circuitbuilder.py -> elmer_circuitbuilder-0.0.1/tests
-Writing elmer_circuitbuilder-0.0.1/setup.cfg
-creating /Users/jonathanvelasco/Documents/elmer/elmer_circuitbuilder/.tox/dist
-creating '/Users/jonathanvelasco/Documents/elmer/elmer_circuitbuilder/.tox/dist/elmer_circuitbuilder-0.0.1.zip' and adding 'elmer_circuitbuilder-0.0.1' to it
-adding 'elmer_circuitbuilder-0.0.1'
-adding 'elmer_circuitbuilder-0.0.1/tests'
-adding 'elmer_circuitbuilder-0.0.1/docs'
-adding 'elmer_circuitbuilder-0.0.1/elmer_circuitbuilder'
-adding 'elmer_circuitbuilder-0.0.1/PKG-INFO'
-adding 'elmer_circuitbuilder-0.0.1/LICENSE'
-adding 'elmer_circuitbuilder-0.0.1/CONTRIBUTING.rst'
-adding 'elmer_circuitbuilder-0.0.1/MANIFEST.in'
-adding 'elmer_circuitbuilder-0.0.1/setup.py'
-adding 'elmer_circuitbuilder-0.0.1/HISTORY.rst'
-adding 'elmer_circuitbuilder-0.0.1/AUTHORS.rst'
-adding 'elmer_circuitbuilder-0.0.1/setup.cfg'
-adding 'elmer_circuitbuilder-0.0.1/README.rst'
-adding 'elmer_circuitbuilder-0.0.1/tests/test_elmer_circuitbuilder.py'
-adding 'elmer_circuitbuilder-0.0.1/tests/__init__.py'
-adding 'elmer_circuitbuilder-0.0.1/docs/index.rst'
-adding 'elmer_circuitbuilder-0.0.1/docs/contributing.rst'
-adding 'elmer_circuitbuilder-0.0.1/docs/Makefile'
-adding 'elmer_circuitbuilder-0.0.1/docs/conf.py'
-adding 'elmer_circuitbuilder-0.0.1/docs/usage.rst'
-adding 'elmer_circuitbuilder-0.0.1/docs/make.bat'
-adding 'elmer_circuitbuilder-0.0.1/docs/history.rst'
-adding 'elmer_circuitbuilder-0.0.1/docs/installation.rst'
-adding 'elmer_circuitbuilder-0.0.1/docs/authors.rst'
-adding 'elmer_circuitbuilder-0.0.1/docs/readme.rst'
-adding 'elmer_circuitbuilder-0.0.1/elmer_circuitbuilder/elmer_circuitbuilder.egg-info'
-adding 'elmer_circuitbuilder-0.0.1/elmer_circuitbuilder/elmer_circuitbuilder.py'
-adding 'elmer_circuitbuilder-0.0.1/elmer_circuitbuilder/elmer_circuitbuilder.egg-info/PKG-INFO'
-adding 'elmer_circuitbuilder-0.0.1/elmer_circuitbuilder/elmer_circuitbuilder.egg-info/not-zip-safe'
-adding 'elmer_circuitbuilder-0.0.1/elmer_circuitbuilder/elmer_circuitbuilder.egg-info/SOURCES.txt'
-adding 'elmer_circuitbuilder-0.0.1/elmer_circuitbuilder/elmer_circuitbuilder.egg-info/requires.txt'
-adding 'elmer_circuitbuilder-0.0.1/elmer_circuitbuilder/elmer_circuitbuilder.egg-info/top_level.txt'
-adding 'elmer_circuitbuilder-0.0.1/elmer_circuitbuilder/elmer_circuitbuilder.egg-info/dependency_links.txt'
-removing 'elmer_circuitbuilder-0.0.1' (and everything under it)
+creating elmer_circuitbuilder-0.0.2
+creating elmer_circuitbuilder-0.0.2/docs
+creating elmer_circuitbuilder-0.0.2/elmer_circuitbuilder
+creating elmer_circuitbuilder-0.0.2/elmer_circuitbuilder/elmer_circuitbuilder.egg-info
+creating elmer_circuitbuilder-0.0.2/tests
+copying files to elmer_circuitbuilder-0.0.2...
+copying AUTHORS.rst -> elmer_circuitbuilder-0.0.2
+copying CONTRIBUTING.rst -> elmer_circuitbuilder-0.0.2
+copying HISTORY.rst -> elmer_circuitbuilder-0.0.2
+copying LICENSE -> elmer_circuitbuilder-0.0.2
+copying MANIFEST.in -> elmer_circuitbuilder-0.0.2
+copying README.rst -> elmer_circuitbuilder-0.0.2
+copying setup.cfg -> elmer_circuitbuilder-0.0.2
+copying setup.py -> elmer_circuitbuilder-0.0.2
+copying docs/Makefile -> elmer_circuitbuilder-0.0.2/docs
+copying docs/authors.rst -> elmer_circuitbuilder-0.0.2/docs
+copying docs/conf.py -> elmer_circuitbuilder-0.0.2/docs
+copying docs/contributing.rst -> elmer_circuitbuilder-0.0.2/docs
+copying docs/history.rst -> elmer_circuitbuilder-0.0.2/docs
+copying docs/index.rst -> elmer_circuitbuilder-0.0.2/docs
+copying docs/installation.rst -> elmer_circuitbuilder-0.0.2/docs
+copying docs/make.bat -> elmer_circuitbuilder-0.0.2/docs
+copying docs/readme.rst -> elmer_circuitbuilder-0.0.2/docs
+copying docs/usage.rst -> elmer_circuitbuilder-0.0.2/docs
+copying elmer_circuitbuilder/elmer_circuitbuilder.py -> elmer_circuitbuilder-0.0.2/elmer_circuitbuilder
+copying elmer_circuitbuilder/elmer_circuitbuilder.egg-info/PKG-INFO -> elmer_circuitbuilder-0.0.2/elmer_circuitbuilder/elmer_circuitbuilder.egg-info
+copying elmer_circuitbuilder/elmer_circuitbuilder.egg-info/SOURCES.txt -> elmer_circuitbuilder-0.0.2/elmer_circuitbuilder/elmer_circuitbuilder.egg-info
+copying elmer_circuitbuilder/elmer_circuitbuilder.egg-info/dependency_links.txt -> elmer_circuitbuilder-0.0.2/elmer_circuitbuilder/elmer_circuitbuilder.egg-info
+copying elmer_circuitbuilder/elmer_circuitbuilder.egg-info/not-zip-safe -> elmer_circuitbuilder-0.0.2/elmer_circuitbuilder/elmer_circuitbuilder.egg-info
+copying elmer_circuitbuilder/elmer_circuitbuilder.egg-info/requires.txt -> elmer_circuitbuilder-0.0.2/elmer_circuitbuilder/elmer_circuitbuilder.egg-info
+copying elmer_circuitbuilder/elmer_circuitbuilder.egg-info/top_level.txt -> elmer_circuitbuilder-0.0.2/elmer_circuitbuilder/elmer_circuitbuilder.egg-info
+copying tests/__init__.py -> elmer_circuitbuilder-0.0.2/tests
+copying tests/test_elmer_circuitbuilder.py -> elmer_circuitbuilder-0.0.2/tests
+Writing elmer_circuitbuilder-0.0.2/setup.cfg
+creating '.tox/dist/elmer_circuitbuilder-0.0.2.zip' and adding 'elmer_circuitbuilder-0.0.2' to it
+adding 'elmer_circuitbuilder-0.0.2'
+adding 'elmer_circuitbuilder-0.0.2/tests'
+adding 'elmer_circuitbuilder-0.0.2/docs'
+adding 'elmer_circuitbuilder-0.0.2/elmer_circuitbuilder'
+adding 'elmer_circuitbuilder-0.0.2/PKG-INFO'
+adding 'elmer_circuitbuilder-0.0.2/LICENSE'
+adding 'elmer_circuitbuilder-0.0.2/CONTRIBUTING.rst'
+adding 'elmer_circuitbuilder-0.0.2/MANIFEST.in'
+adding 'elmer_circuitbuilder-0.0.2/setup.py'
+adding 'elmer_circuitbuilder-0.0.2/HISTORY.rst'
+adding 'elmer_circuitbuilder-0.0.2/AUTHORS.rst'
+adding 'elmer_circuitbuilder-0.0.2/setup.cfg'
+adding 'elmer_circuitbuilder-0.0.2/README.rst'
+adding 'elmer_circuitbuilder-0.0.2/tests/test_elmer_circuitbuilder.py'
+adding 'elmer_circuitbuilder-0.0.2/tests/__init__.py'
+adding 'elmer_circuitbuilder-0.0.2/docs/index.rst'
+adding 'elmer_circuitbuilder-0.0.2/docs/contributing.rst'
+adding 'elmer_circuitbuilder-0.0.2/docs/Makefile'
+adding 'elmer_circuitbuilder-0.0.2/docs/conf.py'
+adding 'elmer_circuitbuilder-0.0.2/docs/usage.rst'
+adding 'elmer_circuitbuilder-0.0.2/docs/make.bat'
+adding 'elmer_circuitbuilder-0.0.2/docs/history.rst'
+adding 'elmer_circuitbuilder-0.0.2/docs/installation.rst'
+adding 'elmer_circuitbuilder-0.0.2/docs/authors.rst'
+adding 'elmer_circuitbuilder-0.0.2/docs/readme.rst'
+adding 'elmer_circuitbuilder-0.0.2/elmer_circuitbuilder/elmer_circuitbuilder.egg-info'
+adding 'elmer_circuitbuilder-0.0.2/elmer_circuitbuilder/elmer_circuitbuilder.py'
+adding 'elmer_circuitbuilder-0.0.2/elmer_circuitbuilder/elmer_circuitbuilder.egg-info/PKG-INFO'
+adding 'elmer_circuitbuilder-0.0.2/elmer_circuitbuilder/elmer_circuitbuilder.egg-info/not-zip-safe'
+adding 'elmer_circuitbuilder-0.0.2/elmer_circuitbuilder/elmer_circuitbuilder.egg-info/SOURCES.txt'
+adding 'elmer_circuitbuilder-0.0.2/elmer_circuitbuilder/elmer_circuitbuilder.egg-info/requires.txt'
+adding 'elmer_circuitbuilder-0.0.2/elmer_circuitbuilder/elmer_circuitbuilder.egg-info/top_level.txt'
+adding 'elmer_circuitbuilder-0.0.2/elmer_circuitbuilder/elmer_circuitbuilder.egg-info/dependency_links.txt'
+removing 'elmer_circuitbuilder-0.0.2' (and everything under it)
