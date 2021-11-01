@@ -210,7 +210,7 @@ class ElmerComponent(Component):
         of the wire, sigma the electrical conductivity and A the cross section of the wire.
 
         """
-        self.coil_type = "Foil"
+        self.coil_type = "Foil winding"
         self.number_turns = number_of_turns
         self.coil_thickness = coil_thickness
 
