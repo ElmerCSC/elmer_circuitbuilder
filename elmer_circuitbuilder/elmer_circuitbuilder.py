@@ -11,6 +11,7 @@
 # ------------------------------------------------------------------------------------------------
 """
 import os
+import sys
 import numpy as np
 from datetime import date
 import cmath
@@ -168,15 +169,15 @@ class ElmerComponent(Component):
         self.master_bodies = master_body_list
         self.sector = sector
         self.dimension = "2D"
-        self.coil_type = "Massive"
-        self.is_closed = True
-        self.number_turns = 1
-        self.resistance = 0
-        self.coil_thickness = 0
+        self.__coil_type = "Massive"
+        self.__is_closed = False
+        self.__number_turns = 1
+        self.__resistance = 0
+        self.__coil_thickness = 0
 
     def massive(self):
         """Sets coil_type as a Massive conductor by assigning appropriate keywords under Component in .sif """
-        self.coil_type = "Massive"
+        self.__coil_type = "Massive"
 
     def stranded(self, number_turns, resistance):
         """Sets coil_type as a "Stranded" conductor by assigning appropriate keywords under Component in .sif
@@ -192,9 +193,9 @@ class ElmerComponent(Component):
             of the wire, sigma the electrical conductivity and A the cross section of the wire.
 
         """
-        self.coil_type = "Stranded"
-        self.number_turns = number_turns
-        self.value = resistance
+        self.__coil_type = "Stranded"
+        self.__number_turns = number_turns
+        self.__value = resistance
 
     def foil(self, number_of_turns, coil_thickness):
         """Sets coil_type as a "Foil" conductor by assigning appropriate keywords under Component in .sif
@@ -210,24 +211,44 @@ class ElmerComponent(Component):
         of the wire, sigma the electrical conductivity and A the cross section of the wire.
 
         """
-        self.coil_type = "Foil winding"
-        self.number_turns = number_of_turns
-        self.coil_thickness = coil_thickness
+        self.__coil_type = "Foil winding"
+        self.__number_turns = number_of_turns
+        self.__coil_thickness = coil_thickness
 
-    def is3D(self, is_closed):
+    def is3D(self):
         """Sets dimension as a "3D" conductor by assigning appropriate keywords under Component in .sif.
 
         In 3D coils can be open or closed. The default value is closed.
 
-        Parameters
-        ----------
-        is_closed : bool
-        Sets required thickness value of a single turn.
-        For example, it is possible to use the DC Resistance R_dc = l/(sigma*A), where l is the length
-        of the wire, sigma the electrical conductivity and A the cross section of the wire.
         """
         self.dimension = "3D"
-        self.is_closed = is_closed
+
+    def isClosed(self):
+        """Sets coil type as closed. A closed coil has no terminal boundaries and cuts are needed.
+        """
+        self.__is_closed = True
+        return self.__is_closed
+
+        # Getters
+    def getCoilType(self):
+        """Gets coil type: Massive, Stranded or Foil winding.
+        """
+        return self.__coil_type
+
+    def getNumberOfTurns(self):
+        """Gets number of turns for stranded and foil winding
+        """
+        return self.__number_turns
+
+    def getResistance(self):
+        """Gets resistance in stranded coil
+        """
+        return self.__resistance
+
+    def getCoilThickness(self):
+        """Gets thickness in Foil winding
+        """
+        return self.__coil_thickness
 
 
 class Circuit:
@@ -1765,23 +1786,49 @@ def write_sif_additions(c, source_vector, ofile):
                 print("  Master Bodies(" + str(int_mb_count) + ") = " +
                       str(joined_str_master_bodies) , file=elmer_file)
             # ------------------------------------------------------------------------------
-            print("  Coil Type = \"" + str(ecomp.coil_type) + "\"", file=elmer_file)
-            if ecomp.coil_type == "Stranded":
+            print("  Coil Type = \"" + str(ecomp.getCoilType()) + "\"", file=elmer_file)
+            if ecomp.getCoilType() == "Stranded":
                 print("  Number of Turns = Real $ N_" + str(ecomp.name), file=elmer_file)
                 print("  Resistance = Real $ R_" + str(ecomp.name), file=elmer_file)
 
-            if ecomp.coil_type == "Foil":
+            if ecomp.getCoilType() == "Foil winding":
                 print("  Number of Turns = Real $ N_" + str(ecomp.name), file=elmer_file)
                 print("  Coil Thickness = Real $ L_" + str(ecomp.name), file=elmer_file)
 
             if(ecomp.dimension == "3D"):
                 print(" ", file=elmer_file)
                 print("  ! Additions for 3D Coil", file=elmer_file)
-                print("  Coil Use W Vector = Logical True", file=elmer_file)
-                print("  W Vector Variable Name = String "'CoilCurrent e'"", file=elmer_file)
-                print("  Electrode Area = Real $ Ae_" + str(ecomp.name) , file=elmer_file)
 
-            print("  Symmetry Coefficient = Real $ 1/(Ns_" + str(ecomp.name) + ")", file=elmer_file)
+                # massive coils
+                if(ecomp.getCoilType() == "Massive"):
+                    if(ecomp.isClosed()):
+                        print("  Coil Use W Vector = Logical True", file=elmer_file)
+                        print("  W Vector Variable Name = String "'CoilCurrent e'"", file=elmer_file)
+                        print("  Electrode Area = Real $ Ae_" + str(ecomp.name) , file=elmer_file)
+                    else:
+                        print("  Coil Use W Vector = Logical True", file=elmer_file)
+                        print("  W Vector Variable Name = String "'CoilCurrent e'"", file=elmer_file)
+                        print("  Electrode Area = Real $ Ae_" + str(ecomp.name) , file=elmer_file)
+
+                # stranded coils
+                if(ecomp.getCoilType() == "Stranded"):
+                    if(ecomp.isClosed()):
+                        print("  Coil Use W Vector = Logical True", file=elmer_file)
+                        print("  W Vector Variable Name = String "'CoilCurrent e'"", file=elmer_file)
+                        print("  Electrode Area = Real $ Ae_" + str(ecomp.name) , file=elmer_file)
+                    else:
+                        pass
+
+                # foil winding
+                if(ecomp.getCoilType() == "Foil winding"):
+                    if(ecomp.isClosed()):
+                        pass
+                    else:
+                        pass
+
+
+            if(ecomp.dimension == "2D"):
+                print("  Symmetry Coefficient = Real $ 1/(Ns_" + str(ecomp.name) + ")", file=elmer_file)
             print("End \n", file=elmer_file)
 
     # store body forces per circuit to print later
@@ -1854,16 +1901,16 @@ def write_parameters(c, ofile):
             print("! Parameters in Component " + str(component.component_number) + ": "
                   + str(component.name), file=elmer_file)
 
-            if(component.coil_type == "Stranded"):
-                print("$ N_" + component.name + " = " + str(component.number_turns)
+            if(component.getCoilType() == "Stranded"):
+                print("$ N_" + component.name + " = " + str(component.getNumberOfTurns())
                       + "\t ! Number of Turns", file=elmer_file)
-                print("$ R_" + component.name + " = " + str(component.value)
+                print("$ R_" + component.name + " = " + str(component.getResistance())
                       + "\t ! Coil Resistance", file=elmer_file)
 
-            if(component.coil_type == "Foil"):
-                print("$ N_" + component.name + " = " + str(component.number_turns)
+            if(component.getCoilType() == "Foil winding"):
+                print("$ N_" + component.name + " = " + str(component.getNumberOfTurns())
                       + "\t ! Number of Turns", file=elmer_file)
-                print("$ L_" + component.name + " = " + str(component.coil_thickness)
+                print("$ L_" + component.name + " = " + str(component.getCoilThickness())
                       + "\t ! Coil Thickness", file=elmer_file)
 
             print("$ Ns_" + component.name + " = " + str(component.sector)
