@@ -12,6 +12,7 @@ writing top-level names to elmer_circuitbuilder/elmer_circuitbuilder.egg-info/to
 reading manifest file 'elmer_circuitbuilder/elmer_circuitbuilder.egg-info/SOURCES.txt'
 reading manifest template 'MANIFEST.in'
 warning: no previously-included files matching '__pycache__' found under directory '*'
+warning: no previously-included files matching '*.py[co]' found under directory '*'
 warning: no files found matching '*.jpg' under directory 'docs'
 warning: no files found matching '*.png' under directory 'docs'
 warning: no files found matching '*.gif' under directory 'docs'
