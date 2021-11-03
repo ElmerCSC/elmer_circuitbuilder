@@ -170,10 +170,12 @@ class ElmerComponent(Component):
         self.sector = sector
         self.dimension = "2D"
         self.__coil_type = "Massive"
-        self.__is_closed = False
+        self.__is_closed = None
         self.__number_turns = 1
         self.__resistance = 0
         self.__coil_thickness = 0
+        self.__bnd1 = None
+        self.__bnd2 = None
 
     def massive(self):
         """Sets coil_type as a Massive conductor by assigning appropriate keywords under Component in .sif """
@@ -229,6 +231,14 @@ class ElmerComponent(Component):
         self.__is_closed = True
         return self.__is_closed
 
+    def isOpen(self, bnd1, bnd2):
+        """Sets coil type as open. An open coil requires two terminal boundaries.
+        """
+        self.__bnd1 = bnd1
+        self.__bnd2 = bnd2
+        self.__is_closed = False
+        return self.__is_closed
+
         # Getters
     def getCoilType(self):
         """Gets coil type: Massive, Stranded or Foil winding.
@@ -249,6 +259,14 @@ class ElmerComponent(Component):
         """Gets thickness in Foil winding
         """
         return self.__coil_thickness
+
+    def getOpenTerminals(self):
+        """Access to boundary terminals defined by isOpen (for open coils)
+        """
+        return [self.__bnd1, self.__bnd2]
+
+    def getTerminalType(self):
+        return self.__is_closed
 
 
 class Circuit:
@@ -1812,12 +1830,15 @@ def write_sif_additions(c, source_vector, ofile):
 
                 # stranded coils
                 if(ecomp.getCoilType() == "Stranded"):
-                    if(ecomp.isClosed()):
+                    if(ecomp.getTerminalType()): # if true = closed
                         print("  Coil Use W Vector = Logical True", file=elmer_file)
                         print("  W Vector Variable Name = String "'CoilCurrent e'"", file=elmer_file)
                         print("  Electrode Area = Real $ Ae_" + str(ecomp.name) , file=elmer_file)
-                    else:
-                        pass
+                    else:    # else open
+                        bnds = ecomp.getOpenTerminals()
+                        print("  Electrode Boundaries(2) = Integer " + str(bnds[0]) + " " + str(bnds[1]) , file=elmer_file)
+                        print("  Circuit Equation Voltage Factor = Real 0.5 !(use for symmetry, e.g. half of the coil)", file=elmer_file)
+
 
                 # foil winding
                 if(ecomp.getCoilType() == "Foil winding"):
