@@ -1,27 +1,3 @@
-Metadata-Version: 2.1
-Name: elmer-circuitbuilder
-Version: 0.0.4
-Summary: Python module for creating the circuit simulation definitions for Elmer FEM. The circuit definitions enable easy setup of coils (e.g. massive, stranded, and foil) in 2D and 3D for magnetodynamics applications.
-Home-page: https://github.com/ElmerCSC/elmer_circuitbuilder.git
-Author: Jonathan Velasco
-Author-email: jvelasco@csc.fi
-Maintainer: CSC - IT Center for Science :  ElmerFEM Developers
-License: GNU General Public License v3
-Keywords: elmer_circuitbuilder
-Platform: UNKNOWN
-Classifier: Development Status :: 3 - Alpha
-Classifier: Intended Audience :: Developers
-Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
-Classifier: Natural Language :: English
-Classifier: Programming Language :: Python :: 3
-Classifier: Programming Language :: Python :: 3.7
-Classifier: Programming Language :: Python :: 3.8
-Classifier: Programming Language :: Python :: 3.9
-Requires-Python: >=3.7
-Provides-Extra: dev
-License-File: LICENSE
-License-File: AUTHORS.rst
-
 ====================
 elmer_circuitbuilder
 ====================
@@ -61,15 +37,3 @@ This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypack
 
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
-
-
-=======
-History
-=======
-
-0.0.1 (2021-10-27)
-------------------
-
-* First release on PyPI.
-
-
