@@ -60,8 +60,21 @@ class R(Component):
     """R is a derived class of the Component class to represent resistors in Ohms.
 
     This class is used to build Elmer's circuit stiffness matrix (B-matrix).
+
+    Parameters
+    ----------
+    name : str
+        the name of the component
+    pin1 : int
+        component positive network node
+    pin2 : int
+        component negative network node
+    value: float
+       Resistance value in Ohms
     """
-    pass
+    def __init__(self, name, pin1, pin2, value=None):
+        Component.__init__(self, name, pin1, pin2, value)
+
 
 
 class V(Component):
@@ -69,8 +82,20 @@ class V(Component):
 
     The source value is assigned under Body Force 1 in the .sif file and appropriate contributions
     are assigned to build Elmer's circuit stiffness matrix (B-matrix)
+
+    Parameters
+    ----------
+    name : str
+        the name of the component
+    pin1 : int
+        component positive network node
+    pin2 : int
+        component negative network node
+    value: float
+       Voltage value in Volts
     """
-    pass
+    def __init__(self, name, pin1, pin2, value=None):
+        Component.__init__(self, name, pin1, pin2, value)
 
 
 class I(Component):
@@ -78,30 +103,67 @@ class I(Component):
 
     The source value is assigned under Body Force 1 in the .sif file and appropriate contributions
     are assigned to build Elmer's circuit stiffness matrix (B-matrix)
+
+    Parameters
+    ----------
+    name : str
+        the name of the component
+    pin1 : int
+        component positive network node
+    pin2 : int
+        component negative network node
+    value: float
+       Current value in Amps
     """
-    pass
+    def __init__(self, name, pin1, pin2, value=None):
+        Component.__init__(self, name, pin1, pin2, value)
+
 
 
 class L(Component):
     """L is a derived class of the Component class to represent inductors Henry.
 
     This class is used to build Elmer's circuit A-matrix (damping).
+
+    Parameters
+    ----------
+    name : str
+        the name of the component
+    pin1 : int
+        component positive network node
+    pin2 : int
+        component negative network node
+    value: float
+       Inductance value in Henry
     """
-    pass
+    def __init__(self, name, pin1, pin2, value=None):
+        Component.__init__(self, name, pin1, pin2, value)
 
 
 class C(Component):
     """C is a derived class of the Component class to represent capacitors in Farad.
 
     This class is used to build Elmer's circuit A-matrix (damping).
+
+    Parameters
+    ----------
+    name : str
+        the name of the component
+    pin1 : int
+        component positive network node
+    pin2 : int
+        component negative network node
+    value: float
+       Capacitance value in Farad
     """
-    pass
+    def __init__(self, name, pin1, pin2, value=None):
+        Component.__init__(self, name, pin1, pin2, value)
 
 
 class ElmerComponent(Component):
     """ElmerComponent is a derived class of the Component class to represent 2D and 3D Coils in Elmer.
 
-    Attributes
+    Parameters
     ----------
     name : str
         the name of the component e.g. Resistor1.
@@ -111,7 +173,7 @@ class ElmerComponent(Component):
         component negative network node
     component_number : int
         Elmer component index
-    master_body_list : list[int] or list[string]
+    master_body_list : list of int
         List of bodies associated with component_number.
         The list members can be integers associated with Master Bodies
         or strings associated with Master Bodies Name.
@@ -1842,10 +1904,12 @@ def write_sif_additions(c, source_vector, ofile):
 
                 # foil winding
                 if(ecomp.getCoilType() == "Foil winding"):
-                    if(ecomp.isClosed()):
+                    if(ecomp.getTerminalType()):
                         pass
                     else:
-                        pass
+                        bnds = ecomp.getOpenTerminals()
+                        print("  Electrode Boundaries(2) = Integer " + str(bnds[0]) + " " + str(bnds[1]) , file=elmer_file)
+                        print("  Circuit Equation Voltage Factor = Real 0.5 !(use for symmetry, e.g. half of the coil)", file=elmer_file)
 
 
             if(ecomp.dimension == "2D"):
