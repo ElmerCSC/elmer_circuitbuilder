@@ -4,7 +4,7 @@
 
 from setuptools import setup, find_packages
 
-with open('README.rst') as readme_file:
+with open('README.md') as readme_file:
     readme = readme_file.read()
 
 with open('HISTORY.rst') as history_file:
@@ -20,7 +20,7 @@ setup(
     maintainer="CSC - IT Center for Science :  ElmerFEM Developers",
     python_requires='>=3.7',
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
         'Natural Language :: English',
@@ -40,7 +40,7 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/ElmerCSC/elmer_circuitbuilder.git',
-    version='v0.0.4',
+    version='v0.0.7',
     zip_safe=False,
     extras_require={"dev":["pytest>=3.7"], },
     py_modules=["elmer_circuitbuilder"],

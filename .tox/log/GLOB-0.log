@@ -15,6 +15,7 @@ warning: no previously-included files matching '__pycache__' found under directo
 warning: no files found matching '*.jpg' under directory 'docs'
 warning: no files found matching '*.png' under directory 'docs'
 warning: no files found matching '*.gif' under directory 'docs'
+warning: no files found matching '.md' under directory 'docs'
 adding license file 'LICENSE'
 adding license file 'AUTHORS.rst'
 writing manifest file 'elmer_circuitbuilder/elmer_circuitbuilder.egg-info/SOURCES.txt'
@@ -31,6 +32,7 @@ copying HISTORY.rst -> elmer_circuitbuilder-0.0.4
 copying LICENSE -> elmer_circuitbuilder-0.0.4
 copying MANIFEST.in -> elmer_circuitbuilder-0.0.4
 copying README.md -> elmer_circuitbuilder-0.0.4
+copying README.rst -> elmer_circuitbuilder-0.0.4
 copying setup.cfg -> elmer_circuitbuilder-0.0.4
 copying setup.py -> elmer_circuitbuilder-0.0.4
 copying docs/Makefile -> elmer_circuitbuilder-0.0.4/docs
@@ -67,6 +69,7 @@ adding 'elmer_circuitbuilder-0.0.4/setup.py'
 adding 'elmer_circuitbuilder-0.0.4/HISTORY.rst'
 adding 'elmer_circuitbuilder-0.0.4/AUTHORS.rst'
 adding 'elmer_circuitbuilder-0.0.4/setup.cfg'
+adding 'elmer_circuitbuilder-0.0.4/README.rst'
 adding 'elmer_circuitbuilder-0.0.4/tests/test_elmer_circuitbuilder.py'
 adding 'elmer_circuitbuilder-0.0.4/tests/__init__.py'
 adding 'elmer_circuitbuilder-0.0.4/docs/index.rst'
