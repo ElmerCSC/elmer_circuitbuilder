@@ -2164,7 +2164,7 @@ def solve_circuit(circuit):
         if isElmerComponent or isValueNone:
             #print("This model will not be solved externally due to:")
             print("Elmer Circuit Model:", isElmerComponent)
-            print("Component Values not Defined:", isValueNone)
+            #print("Component Values not Defined:", isValueNone)
 
             if isElmerComponent:
                 print("Include circuit file in .sif file to be run with ElmerSolver")
