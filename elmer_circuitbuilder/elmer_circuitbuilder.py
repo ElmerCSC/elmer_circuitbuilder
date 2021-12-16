@@ -334,7 +334,7 @@ class ElmerComponent(Component):
 class Circuit:
     """Circuit class is associated to a circuit index,
     holds the components within circuit and requires a reference node (default=1)"""
-    def __init__(self, index, components=[], ref_node=1):
+    def __init__(self, index, components, ref_node=1):
         """
         Parameters
         ----------
@@ -373,7 +373,7 @@ def number_of_circuits(ncircuits):
     """
     c = {}
     for i in range(1, ncircuits+1):
-        c[i] = Circuit(i)
+        c[i] = Circuit(i,[])
 
     return c
 
