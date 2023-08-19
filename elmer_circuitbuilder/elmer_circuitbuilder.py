@@ -1476,7 +1476,7 @@ def write_file_header(circuit, ofile):
 
     # Remove file from previous matrix generation
     if os.path.isfile(ofile) is True:
-        os.system('rm -r ' + ofile)
+        os.remove(ofile)
 
     elmer_file = open(ofile, 'w')
     print("! -----------------------------------------------------------------------------", file=elmer_file)
