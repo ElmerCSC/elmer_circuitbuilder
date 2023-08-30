@@ -28,3 +28,37 @@ def test_helloworld_no_params():
 
 def test_helloworld_with_param():
     assert say_hello("Everyone") == "Hello, Everyone!"
+
+
+if __name__ == '__main__':
+    output_file = "harmonic_open3Dmassive_circuit.definition"
+
+    # initialize circuits: number of circuits - do not remove
+    c = number_of_circuits(1)
+
+    # ------------------ Circuit 1 (Current Source - Harmonic)---------------------
+
+    # reference/ground node needed - do not remove.
+    c[1].ref_node = 1
+
+    # Components
+
+    I1 = I("source2", 1, 2, 10000)
+    V1 = V("source3", 1, 1, 10000)
+    V2 = V("source4", 1, 1, 10000)
+    V3 = V("source5", 1, 1, 10000)
+    Wire1 = ElmerComponent("Winding1", 2, 1, 1)
+    Wire1.is3D()
+    Wire1.isOpen(2, 1)
+    Wire2 = ElmerComponent("Winding2", 101, 1)
+    Wire2.is3D()
+    Wire2.isOpen(101, 1)
+
+    # store components in array components = [comp1, comp2,...] - do not remove
+    c[1].components.append([I1, Wire1])
+    #c[2].components.append([V1, Wire1])
+
+    # --------------------------------------------------
+
+    # generate elmer circuit.definitions - do not remove / do not edit
+    write_elmer_circuits(c, output_file)

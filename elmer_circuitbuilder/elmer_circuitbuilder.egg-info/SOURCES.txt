@@ -25,4 +25,5 @@ elmer_circuitbuilder/elmer_circuitbuilder.egg-info/not-zip-safe
 elmer_circuitbuilder/elmer_circuitbuilder.egg-info/requires.txt
 elmer_circuitbuilder/elmer_circuitbuilder.egg-info/top_level.txt
 tests/__init__.py
+tests/harmonic_open3Dmassive_circuit.definition
 tests/test_elmer_circuitbuilder.py
