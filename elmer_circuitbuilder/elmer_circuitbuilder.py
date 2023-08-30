@@ -662,11 +662,11 @@ def get_resistance_matrix_str(components, nedges, indr, indi, indcap):
     """
     # initialize R matrix. R = R_r + R_i + R_cap
     Rmat_r_str = np.chararray((nedges, nedges))
-    Rmat_r_str = np.chararray(Rmat_r_str.shape, itemsize=5)
+    Rmat_r_str = np.chararray(Rmat_r_str.shape, itemsize=256)
     Rmat_i_str = np.chararray((nedges, nedges))
-    Rmat_i_str = np.chararray(Rmat_i_str.shape, itemsize=5)
+    Rmat_i_str = np.chararray(Rmat_i_str.shape, itemsize=256)
     Rmat_cap_str = np.chararray((nedges, nedges))
-    Rmat_cap_str = np.chararray(Rmat_cap_str.shape, itemsize=5)
+    Rmat_cap_str = np.chararray(Rmat_cap_str.shape, itemsize=256)
 
     # initialize zero char in all matrices
 
@@ -771,11 +771,11 @@ def get_conductance_matrix_str(nedges, indr, indv, indInd):
     # initialize G matrix. G = G_r + G_v + G_ind
     # (resistor, voltage generators, inductors)
     Gmat_r_str = np.chararray((nedges, nedges))
-    Gmat_r_str = np.chararray(Gmat_r_str.shape, itemsize=5)
+    Gmat_r_str = np.chararray(Gmat_r_str.shape, itemsize=256)
     Gmat_v_str = np.chararray((nedges, nedges))
-    Gmat_v_str = np.chararray(Gmat_v_str.shape, itemsize=5)
+    Gmat_v_str = np.chararray(Gmat_v_str.shape, itemsize=256)
     Gmat_ind_str = np.chararray((nedges, nedges))
-    Gmat_ind_str = np.chararray(Gmat_ind_str.shape, itemsize=5)
+    Gmat_ind_str = np.chararray(Gmat_ind_str.shape, itemsize=256)
 
     # initialize zero char in all matrices
     for i in range(0, nedges):
@@ -851,7 +851,7 @@ def get_inductance_matrix_str(components, nedges, indInd):
     """
     # initialize L matrix.
     Lmat_str = np.chararray((nedges, nedges))
-    Lmat_str = np.chararray(Lmat_str.shape, itemsize=5)
+    Lmat_str = np.chararray(Lmat_str.shape, itemsize=256)
 
     # initialize zero char in all matrices
     for i in range(0, nedges):
@@ -915,7 +915,7 @@ def get_capacitance_matrix_str(components, nedges, indcap):
     """
     # initialize L matrix.
     Cmat_str = np.chararray((nedges, nedges))
-    Cmat_str = np.chararray(Cmat_str.shape, itemsize=5)
+    Cmat_str = np.chararray(Cmat_str.shape, itemsize=256)
 
     # initialize zero char in all matrices
     for i in range(0, nedges):
