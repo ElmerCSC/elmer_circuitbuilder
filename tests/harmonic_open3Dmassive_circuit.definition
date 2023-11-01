@@ -1,5 +1,5 @@
 ! -----------------------------------------------------------------------------
-! ElmerFEM Circuit Generated: August 30, 2023
+! ElmerFEM Circuit Generated: October 10, 2023
 ! -----------------------------------------------------------------------------
 
 ! -----------------------------------------------------------------------------
@@ -17,10 +17,13 @@ $ Capacitor1 = 100
 ! Parameters in Component 1: Winding1
 $ Ns_Winding1 = 1	 ! Sector/Symmetry Coefficient (e.g. 4 is 1/4 of the domain)
 $ Ae_Winding1 = 0.0025	 ! Electrode Area (dummy for now change as required)
+! Parameters in Component 2: Winding2
+$ Ns_Winding2 = 1	 ! Sector/Symmetry Coefficient (e.g. 4 is 1/4 of the domain)
+$ Ae_Winding2 = 0.0025	 ! Electrode Area (dummy for now change as required)
 ! -----------------------------------------------------------------------------
 ! Matrix Size Declaration and Matrix Initialization
 ! -----------------------------------------------------------------------------
-$ C.1.variables = 7
+$ C.1.variables = 10
 $ C.1.perm = zeros(C.1.variables)
 $ C.1.A = zeros(C.1.variables,C.1.variables)
 $ C.1.B = zeros(C.1.variables,C.1.variables)
@@ -30,41 +33,49 @@ $ C.1.B = zeros(C.1.variables,C.1.variables)
 ! -----------------------------------------------------------------------------
 $ C.1.name.1 = "i_source2"
 $ C.1.name.2 = "i_component(1)"
-$ C.1.name.3 = "i_Capacitor1"
-$ C.1.name.4 = "v_source2"
-$ C.1.name.5 = "v_component(1)"
-$ C.1.name.6 = "v_Capacitor1"
-$ C.1.name.7 = "u_2_circuit_1"
+$ C.1.name.3 = "i_component(2)"
+$ C.1.name.4 = "i_Capacitor1"
+$ C.1.name.5 = "v_source2"
+$ C.1.name.6 = "v_component(1)"
+$ C.1.name.7 = "v_component(2)"
+$ C.1.name.8 = "v_Capacitor1"
+$ C.1.name.9 = "u_2_circuit_1"
+$ C.1.name.10 = "u_3_circuit_1"
 
 ! -----------------------------------------------------------------------------
 ! Source Vector Definition
 ! -----------------------------------------------------------------------------
-$ C.1.source.6 = "source2"
+$ C.1.source.9 = "source2"
 
 ! -----------------------------------------------------------------------------
 ! KCL Equations
 ! -----------------------------------------------------------------------------
 $ C.1.B(0,0) = -1
 $ C.1.B(0,1) = 1
-$ C.1.B(0,2) = 1
+$ C.1.B(0,3) = 1
+$ C.1.B(1,1) = -1
+$ C.1.B(1,2) = 1
 
 ! -----------------------------------------------------------------------------
 ! KVL Equations
 ! -----------------------------------------------------------------------------
-$ C.1.B(1,3) = 1
-$ C.1.B(1,6) = -1
-$ C.1.B(2,4) = -1
-$ C.1.B(2,6) = 1
+$ C.1.B(2,4) = 1
+$ C.1.B(2,8) = -1
 $ C.1.B(3,5) = -1
-$ C.1.B(3,6) = 1
+$ C.1.B(3,8) = 1
+$ C.1.B(3,9) = -1
+$ C.1.B(4,6) = -1
+$ C.1.B(4,9) = 1
 
 ! -----------------------------------------------------------------------------
 ! Component Equations
 ! -----------------------------------------------------------------------------
-$ C.1.B(5,0) = 1
-$ C.1.B(6,2) = 1
+$ C.1.B(7,7) = -1
+$ C.1.B(7,8) = 1
+$ C.1.B(8,0) = 1
+$ C.1.B(9,3) = 1
 
-$ C.1.A(6,5) = -Capacitor1
+$ C.1.A(9,7) = -Capacitor1
 
 ! -----------------------------------------------------------------------------
 ! Additions in SIF file
@@ -77,6 +88,15 @@ Component 1
   Coil Use W Vector = Logical True
   W Vector Variable Name = String CoilCurrent e
   Electrode Area = Real $ Ae_Winding1
+End 
+Component 2
+  Name = "Winding2"
+  Coil Type = "Massive"
+
+  ! Additions for 3D Coil
+  Coil Use W Vector = Logical True
+  W Vector Variable Name = String CoilCurrent e
+  Electrode Area = Real $ Ae_Winding2
 End 
 ! -----------------------------------------------------------------------------
 ! Sources in SIF 

@@ -47,16 +47,16 @@ if __name__ == '__main__':
     V1 = V("source3", 1, 1, 10000)
     V2 = V("source4", 1, 1, 10000)
     V3 = V("source5", 1, 1, 10000)
-    Wire1 = ElmerComponent("Winding1", 2, 1, 1)
+    Wire1 = ElmerComponent("Winding1", 2, 3, 1)
     Wire1.is3D()
     Wire1.isOpen(2, 1)
     C1 = C("Capacitor1", 2, 1, 100)
-    Wire2 = ElmerComponent("Winding2", 101, 1)
+    Wire2 = ElmerComponent("Winding2", 3, 1, 2)
     Wire2.is3D()
     Wire2.isOpen(101, 1)
 
     # store components in array components = [comp1, comp2,...] - do not remove
-    c[1].components.append([I1, Wire1, C1])
+    c[1].components.append([I1, Wire1, Wire2, C1])
     #c[2].components.append([V1, Wire1])
 
     # --------------------------------------------------
