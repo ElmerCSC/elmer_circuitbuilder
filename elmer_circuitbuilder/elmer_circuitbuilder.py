@@ -1862,7 +1862,7 @@ def write_sif_additions(c, source_vector, ofile):
                 joined_str_master_names = ", ".join(str_mbody)
                 print("  Master Bodies Name = " + str(joined_str_master_names), file=elmer_file)
             if(int_mbody):
-                joined_str_master_bodies = ", ".join(int_mbody)
+                joined_str_master_bodies = " ".join(int_mbody)
                 print("  Master Bodies(" + str(int_mb_count) + ") = " +
                       str(joined_str_master_bodies) , file=elmer_file)
             # ------------------------------------------------------------------------------
