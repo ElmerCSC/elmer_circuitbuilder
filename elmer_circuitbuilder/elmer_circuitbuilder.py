@@ -2006,7 +2006,7 @@ def write_parameters(c, ofile):
                       , file=elmer_file)
     print("", file=elmer_file)
 
-    elmer_file.close
+    elmer_file.close()
 
 
 def write_elmer_circuit_file(c, elmerA, elmerB, elmersource, unknown_names, num_nodes, num_edges, ofile):
