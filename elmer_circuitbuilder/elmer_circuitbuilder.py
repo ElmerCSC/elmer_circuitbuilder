@@ -1922,12 +1922,9 @@ def write_sif_additions(c, source_vector, ofile):
         name = component.name
         value = component.value
 
-        val_sign = ""
-        if "-" in str_val:
-            val_sign = "-"
         if isinstance(value, complex):
-            body_force_list.append("  " + name + "_Source re = Real $ " + val_sign + "re_" + str_val.strip("-"))
-            body_force_list.append("  " + name + "_Source im = Real $ " + val_sign + "im_" + str_val.strip("-"))
+            body_force_list.append("  " + name + "_Source re = Real $ " + "re_" + str_val.strip("-"))
+            body_force_list.append("  " + name + "_Source im = Real $ " + "im_" + str_val.strip("-"))
         else:
             body_force_list.append("  " + name + "_Source = Variable \"time\" \n  \t Real MATC \""
                                    + str_val.strip("-") + "\"")
