@@ -539,9 +539,9 @@ def get_incidence_matrix_str(components, numnodes, numedges, n_ref):
 
     # initialize string matrices
     Amat_plus_str = np.chararray((numnodes, numedges))
-    Amat_plus_str = np.chararray(Amat_plus_str.shape, itemsize=3)
+    Amat_plus_str = np.chararray(Amat_plus_str.shape, itemsize=500)
     Amat_minus_str = np.chararray((numnodes, numedges))
-    Amat_minus_str = np.chararray(Amat_minus_str.shape, itemsize=3)
+    Amat_minus_str = np.chararray(Amat_minus_str.shape, itemsize=500)
 
     # initialize zero char in all matrices
     for i in range(0, numnodes):
@@ -646,11 +646,11 @@ def get_resistance_matrix_str(components, nedges, indr, indi, indcap):
     """
     # initialize R matrix. R = R_r + R_i + R_cap
     Rmat_r_str = np.chararray((nedges, nedges))
-    Rmat_r_str = np.chararray(Rmat_r_str.shape, itemsize=5)
+    Rmat_r_str = np.chararray(Rmat_r_str.shape, itemsize=500)
     Rmat_i_str = np.chararray((nedges, nedges))
-    Rmat_i_str = np.chararray(Rmat_i_str.shape, itemsize=5)
+    Rmat_i_str = np.chararray(Rmat_i_str.shape, itemsize=500)
     Rmat_cap_str = np.chararray((nedges, nedges))
-    Rmat_cap_str = np.chararray(Rmat_cap_str.shape, itemsize=5)
+    Rmat_cap_str = np.chararray(Rmat_cap_str.shape, itemsize=500)
 
     # initialize zero char in all matrices
 
@@ -755,11 +755,11 @@ def get_conductance_matrix_str(nedges, indr, indv, indInd):
     # initialize G matrix. G = G_r + G_v + G_ind
     # (resistor, voltage generators, inductors)
     Gmat_r_str = np.chararray((nedges, nedges))
-    Gmat_r_str = np.chararray(Gmat_r_str.shape, itemsize=5)
+    Gmat_r_str = np.chararray(Gmat_r_str.shape, itemsize=500)
     Gmat_v_str = np.chararray((nedges, nedges))
-    Gmat_v_str = np.chararray(Gmat_v_str.shape, itemsize=5)
+    Gmat_v_str = np.chararray(Gmat_v_str.shape, itemsize=500)
     Gmat_ind_str = np.chararray((nedges, nedges))
-    Gmat_ind_str = np.chararray(Gmat_ind_str.shape, itemsize=5)
+    Gmat_ind_str = np.chararray(Gmat_ind_str.shape, itemsize=500)
 
     # initialize zero char in all matrices
     for i in range(0, nedges):
@@ -835,7 +835,7 @@ def get_inductance_matrix_str(components, nedges, indInd):
     """
     # initialize L matrix.
     Lmat_str = np.chararray((nedges, nedges))
-    Lmat_str = np.chararray(Lmat_str.shape, itemsize=5)
+    Lmat_str = np.chararray(Lmat_str.shape, itemsize=500)
 
     # initialize zero char in all matrices
     for i in range(0, nedges):
@@ -899,7 +899,7 @@ def get_capacitance_matrix_str(components, nedges, indcap):
     """
     # initialize L matrix.
     Cmat_str = np.chararray((nedges, nedges))
-    Cmat_str = np.chararray(Cmat_str.shape, itemsize=5)
+    Cmat_str = np.chararray(Cmat_str.shape, itemsize=500)
 
     # initialize zero char in all matrices
     for i in range(0, nedges):
@@ -1009,10 +1009,10 @@ def get_rhs_str(components, nedges, indi, indv):
     # initialize RHS vector. RHS = RHS_i + RHS_v
     # (current source, voltage source)
     rhs_v_str = np.chararray((nedges, 1))
-    rhs_v_str = np.chararray(rhs_v_str.shape, itemsize=5)
+    rhs_v_str = np.chararray(rhs_v_str.shape, itemsize=500)
 
     rhs_i_str = np.chararray((nedges, 1))
-    rhs_i_str = np.chararray(rhs_i_str.shape, itemsize=5)
+    rhs_i_str = np.chararray(rhs_i_str.shape, itemsize=500)
 
     # initialize zero char in all matrices
     for i in range(0, nedges):
@@ -1926,10 +1926,8 @@ def write_sif_additions(c, source_vector, ofile):
         if "-" in str_val:
             val_sign = "-"
         if isinstance(value, complex):
-            body_force_list.append("  " + name + "_Source re = Real $ " + val_sign + "re_" + str_val.strip("-")
-                                   + "*cos(phase_" + name+")")
-            body_force_list.append("  " + name + "_Source im = Real $ " + val_sign + "im_" + str_val.strip("-")
-                                   + "*sin(phase_" + name+")")
+            body_force_list.append("  " + name + "_Source re = Real $ " + val_sign + "re_" + str_val.strip("-"))
+            body_force_list.append("  " + name + "_Source im = Real $ " + val_sign + "im_" + str_val.strip("-"))
         else:
             body_force_list.append("  " + name + "_Source = Variable \"time\" \n  \t Real MATC \""
                                    + str_val.strip("-") + "\"")
@@ -2001,9 +1999,6 @@ def write_parameters(c, ofile):
             print("$ Ns_" + component.name + " = " + str(component.sector)
                   + "\t ! Sector/Symmetry Coefficient (e.g. 4 is 1/4 of the domain)", file=elmer_file)
 
-            if(component.dimension == "3D"):
-                print("$ Ae_" + component.name + " = 0.0025 " + "\t ! Electrode Area (dummy for now change as required)"
-                      , file=elmer_file)
     print("", file=elmer_file)
 
     elmer_file.close
