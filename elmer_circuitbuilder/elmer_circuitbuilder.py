@@ -1972,8 +1972,8 @@ def write_parameters(c, ofile):
                 print("! " + component.name + " = re_" + component.name + "+ j im_" + component.name + ", phase_"
                       + component.name + " = " + str(np.degrees(cmath.phase(component.value)))
                       + "(Deg)", file=elmer_file)
-                print("$ re_" + component.name + " = " + str(abs(np.real(component.value))), file=elmer_file)
-                print("$ im_" + component.name + " = " + str(abs(np.imag(component.value))), file=elmer_file)
+                print("$ re_" + component.name + " = " + str(np.real(component.value)), file=elmer_file)
+                print("$ im_" + component.name + " = " + str(np.imag(component.value)), file=elmer_file)
                 print("$ phase_" + component.name + " = " + str(cmath.phase(component.value)), file=elmer_file)
             else:
                 print("$ " + component.name + " = " + str(component.value), file=elmer_file)
