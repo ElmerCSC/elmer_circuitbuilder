@@ -259,7 +259,7 @@ class ElmerComponent(Component):
         """
         self.__coil_type = "Stranded"
         self.__number_turns = number_turns
-        self.__value = resistance
+        self.__resistance = resistance
 
     def foil(self, number_of_turns, coil_thickness):
         """Sets coil_type as a "Foil" conductor by assigning appropriate keywords under Component in .sif
