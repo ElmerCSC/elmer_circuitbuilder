@@ -1476,7 +1476,7 @@ def write_file_header(circuit, ofile):
 
     # Remove file from previous matrix generation
     if os.path.isfile(ofile) is True:
-        os.system('rm -r ' + ofile)
+        os.remove(ofile)
 
     elmer_file = open(ofile, 'w')
     print("! -----------------------------------------------------------------------------", file=elmer_file)
@@ -1862,7 +1862,7 @@ def write_sif_additions(c, source_vector, ofile):
                 joined_str_master_names = ", ".join(str_mbody)
                 print("  Master Bodies Name = " + str(joined_str_master_names), file=elmer_file)
             if(int_mbody):
-                joined_str_master_bodies = ", ".join(int_mbody)
+                joined_str_master_bodies = " ".join(int_mbody)
                 print("  Master Bodies(" + str(int_mb_count) + ") = " +
                       str(joined_str_master_bodies) , file=elmer_file)
             # ------------------------------------------------------------------------------
@@ -2002,7 +2002,7 @@ def write_parameters(c, ofile):
 
     print("", file=elmer_file)
 
-    elmer_file.close
+    elmer_file.close()
 
 
 def write_elmer_circuit_file(c, elmerA, elmerB, elmersource, unknown_names, num_nodes, num_edges, ofile):
