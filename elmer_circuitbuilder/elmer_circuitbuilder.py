@@ -525,7 +525,7 @@ def get_incidence_matrix_str(components, numnodes, numedges, n_ref):
 
     Returns
     ----------
-    Amat_str : numpy.chararray
+    Amat_str : numpy.ndarray of `bytes` strings
         Returns string incidence matrix
     """
 
@@ -538,10 +538,8 @@ def get_incidence_matrix_str(components, numnodes, numedges, n_ref):
     minus_terminal = [i for i in range(0, numedges)]
 
     # initialize string matrices
-    Amat_plus_str = np.chararray((numnodes, numedges))
-    Amat_plus_str = np.chararray(Amat_plus_str.shape, itemsize=500)
-    Amat_minus_str = np.chararray((numnodes, numedges))
-    Amat_minus_str = np.chararray(Amat_minus_str.shape, itemsize=500)
+    Amat_plus_str = np.empty((numnodes, numedges), dtype='|S500')
+    Amat_minus_str = np.empty((numnodes, numedges), dtype='|S500')
 
     # initialize zero char in all matrices
     for i in range(0, numnodes):
@@ -640,17 +638,14 @@ def get_resistance_matrix_str(components, nedges, indr, indi, indcap):
 
     Returns
     ----------
-    Rmat_str : numpy.chararray
+    Rmat_str : numpy.ndarray of `bytes` strings
         Returns string/char resistance matrix
 
     """
     # initialize R matrix. R = R_r + R_i + R_cap
-    Rmat_r_str = np.chararray((nedges, nedges))
-    Rmat_r_str = np.chararray(Rmat_r_str.shape, itemsize=500)
-    Rmat_i_str = np.chararray((nedges, nedges))
-    Rmat_i_str = np.chararray(Rmat_i_str.shape, itemsize=500)
-    Rmat_cap_str = np.chararray((nedges, nedges))
-    Rmat_cap_str = np.chararray(Rmat_cap_str.shape, itemsize=500)
+    Rmat_r_str = np.empty((nedges, nedges), dtype='|S500')
+    Rmat_i_str = np.empty((nedges, nedges), dtype='|S500')
+    Rmat_cap_str = np.empty((nedges, nedges), dtype='|S500')
 
     # initialize zero char in all matrices
 
@@ -748,18 +743,15 @@ def get_conductance_matrix_str(nedges, indr, indv, indInd):
 
     Returns
     ----------
-    Gmat_str : numpy.chararray
+    Gmat_str : numpy.ndarray of `bytes` strings
         Returns string/char conductance matrix
 
     """
     # initialize G matrix. G = G_r + G_v + G_ind
     # (resistor, voltage generators, inductors)
-    Gmat_r_str = np.chararray((nedges, nedges))
-    Gmat_r_str = np.chararray(Gmat_r_str.shape, itemsize=500)
-    Gmat_v_str = np.chararray((nedges, nedges))
-    Gmat_v_str = np.chararray(Gmat_v_str.shape, itemsize=500)
-    Gmat_ind_str = np.chararray((nedges, nedges))
-    Gmat_ind_str = np.chararray(Gmat_ind_str.shape, itemsize=500)
+    Gmat_r_str = np.empty((nedges, nedges), dtype='|S500')
+    Gmat_v_str = np.empty((nedges, nedges), dtype='|S500')
+    Gmat_ind_str = np.empty((nedges, nedges), dtype='|S500')
 
     # initialize zero char in all matrices
     for i in range(0, nedges):
@@ -830,12 +822,11 @@ def get_inductance_matrix_str(components, nedges, indInd):
 
     Returns
     ----------
-    Lmat_str : numpy.chararray
+    Lmat_str : numpy.ndarray of `bytes` strings
         Returns string/char inductance matrix
     """
     # initialize L matrix.
-    Lmat_str = np.chararray((nedges, nedges))
-    Lmat_str = np.chararray(Lmat_str.shape, itemsize=500)
+    Lmat_str = np.empty((nedges, nedges), dtype='|S500')
 
     # initialize zero char in all matrices
     for i in range(0, nedges):
@@ -894,12 +885,11 @@ def get_capacitance_matrix_str(components, nedges, indcap):
 
     Returns
     ----------
-    Cmat_str : numpy.chararray
+    Cmat_str : numpy.ndarray of `bytes` strings
         Returns string/char capacitance matrix
     """
     # initialize L matrix.
-    Cmat_str = np.chararray((nedges, nedges))
-    Cmat_str = np.chararray(Cmat_str.shape, itemsize=500)
+    Cmat_str = np.empty((nedges, nedges), dtype='|S500')
 
     # initialize zero char in all matrices
     for i in range(0, nedges):
@@ -1002,17 +992,15 @@ def get_rhs_str(components, nedges, indi, indv):
 
     Returns
     ----------
-    rhs : numpy.chararray
+    rhs : numpy.ndarray of `bytes` strings
         Returns string/char source vector
     """
 
     # initialize RHS vector. RHS = RHS_i + RHS_v
     # (current source, voltage source)
-    rhs_v_str = np.chararray((nedges, 1))
-    rhs_v_str = np.chararray(rhs_v_str.shape, itemsize=500)
+    rhs_v_str = np.empty((nedges, 1), dtype='|S500')
 
-    rhs_i_str = np.chararray((nedges, 1))
-    rhs_i_str = np.chararray(rhs_i_str.shape, itemsize=500)
+    rhs_i_str = np.empty((nedges, 1), dtype='|S500')
 
     # initialize zero char in all matrices
     for i in range(0, nedges):
@@ -1129,22 +1117,22 @@ def get_tableau_matrix_str(Amat_str, Rmat_str, Gmat_str, Lmat_str, Cmat_str, fve
 
     Parameters
     ----------
-    Amat_str : numpy.chararray
+    Amat_str : numpy.ndarray of `bytes` strings
         Incidence matrix
 
-    Rmat_str : numpy.chararray
+    Rmat_str : numpy.ndarray of `bytes` strings
         Resistance matrix
 
-    Gmat_str : numpy.chararray
+    Gmat_str : numpy.ndarray of `bytes` strings
         Conductance matrix
 
-    Lmat_str : numpy.chararray
+    Lmat_str : numpy.ndarray of `bytes` strings
         Inductance matrix
 
-    Cmat_str : numpy.chararray
+    Cmat_str : numpy.ndarray of `bytes` strings
         Conductance matrix
 
-    fvec_str : numpy.chararray
+    fvec_str : numpy.ndarray of `bytes` strings
         Numerical incidence matrix
 
     numnodes : int
@@ -1155,7 +1143,7 @@ def get_tableau_matrix_str(Amat_str, Rmat_str, Gmat_str, Lmat_str, Cmat_str, fve
 
     Returns
     ----------
-    Mmat1, Mmat2, bvec : tuple[numpy.chararray, numpy.chararray, numpy.chararray]
+    Mmat1, Mmat2, bvec : tuple[numpy.ndarray, numpy.ndarray, numpy.ndarray]
         Returns stiffness matrix (Mmat1), damping matrix (Mmat2) and source vector (bvec).
         In Elmer A = Mmat1, B = Mmat2 and source = bvec
     """
@@ -1172,13 +1160,13 @@ def get_tableau_matrix_str(Amat_str, Rmat_str, Gmat_str, Lmat_str, Cmat_str, fve
 
     # Source term
     for i in range(len(fvec_str)):
-        if fvec_str[i].decode() == '' or fvec_str[i].decode() == '0.0' or fvec_str[i].decode() == '-0.0':
+        if fvec_str[i].item().decode() == '' or fvec_str[i].item().decode() == '0.0' or fvec_str[i].item().decode() == '-0.0':
             fvec_str[i] = str(0)
     bvec_str = np.block([[np.zeros(shape=(numnodes - 1, 1))], [np.zeros(shape=(numedges, 1))], [fvec_str]])
 
     # redundant cleanup for int format looks
     for i in range(len(bvec_str)):
-        if bvec_str[i][0].decode() == '' or bvec_str[i][0].decode() == '0.0' or bvec_str[i][0].decode() == '-0.0':
+        if bvec_str[i][0].item().decode() == '' or bvec_str[i][0].item().decode() == '0.0' or bvec_str[i][0].item().decode() == '-0.0':
             bvec_str[i][0] = str(0)
 
     # A matrix in Elmer
@@ -1188,23 +1176,23 @@ def get_tableau_matrix_str(Amat_str, Rmat_str, Gmat_str, Lmat_str, Cmat_str, fve
     rows, cols = Mmat1_str.shape
     for i in range(0, rows):
         for j in range(0, cols):
-            if Mmat1_str[i][j].decode() == '' or Mmat1_str[i][j].decode() == '-0.0' \
-                or Mmat1_str[i][j].decode() == '0.0':
+            if Mmat1_str[i][j].item().decode() == '' or Mmat1_str[i][j].item().decode() == '-0.0' \
+                or Mmat1_str[i][j].item().decode() == '0.0':
                 Mmat1_str[i][j] = str(0)
-            if Mmat1_str[i][j].decode() == '-1.0':
+            if Mmat1_str[i][j].item().decode() == '-1.0':
                 Mmat1_str[i][j] = str(-1)
-            if Mmat1_str[i][j].decode() == '1.0':
+            if Mmat1_str[i][j].item().decode() == '1.0':
                 Mmat1_str[i][j] = str(1)
 
     rows, cols = Mmat2_str.shape
     for i in range(0, rows):
         for j in range(0, cols):
-            if Mmat2_str[i][j].decode() == '' or Mmat2_str[i][j].decode() == '-0.0' \
-                or Mmat2_str[i][j].decode() == '0.0':
+            if Mmat2_str[i][j].item().decode() == '' or Mmat2_str[i][j].item().decode() == '-0.0' \
+                or Mmat2_str[i][j].item().decode() == '0.0':
                 Mmat2_str[i][j] = str(0)
-            if Mmat2_str[i][j].decode() == '-1.0':
+            if Mmat2_str[i][j].item().decode() == '-1.0':
                 Mmat2_str[i][j] = str(-1)
-            if Mmat2_str[i][j].decode() == '1.0':
+            if Mmat2_str[i][j].item().decode() == '1.0':
                 Mmat2_str[i][j] = str(1)
 
     return Mmat1_str, Mmat2_str, bvec_str
@@ -1256,13 +1244,13 @@ def elmer_format_matrix(M1_str, M2_str, b_str, vcomp_rows, zero_rows):
 
     Parameters
     ----------
-    M1_str : numpy.chararray
+    M1_str : numpy.ndarray of `bytes` strings
         stiffness matrix equations (resistance, incidence, generators)
 
-    M2_str : numpy.chararray
+    M2_str : numpy.ndarray of `bytes` strings
         damping matrix equations (inductors, capacitors)
 
-    b_str : numpy.chararray
+    b_str : numpy.ndarray of `bytes` strings
         source vector
 
     vcomp_rows : float, optional
@@ -1273,7 +1261,7 @@ def elmer_format_matrix(M1_str, M2_str, b_str, vcomp_rows, zero_rows):
 
     Returns
     ----------
-    elmer_Amat, elmer_Bmat, elmer_source : tuple(numpy.chararray, numpy.chararray, numpy.chararray)
+    elmer_Amat, elmer_Bmat, elmer_source : tuple(numpy.ndarray, numpy.ndarray, numpy.ndarray)
         Elmer's stiffness (B) matrix, damping (A) matrix and source vector
     """
 
@@ -1399,13 +1387,13 @@ def get_zero_rows_str(M1_str, M2_str, b_str):
 
     Parameters
     ----------
-    M1_str : numpy.chararray
+    M1_str : numpy.ndarray of `bytes` strings
         String stiffness matrix
 
-    M2_str : numpy.chararray
+    M2_str : numpy.ndarray of `bytes` strings
         String damping matrix
 
-    b_str : numpy.chararray
+    b_str : numpy.ndarray of `bytes` strings
         String source vector
 
     Returns
@@ -1419,15 +1407,15 @@ def get_zero_rows_str(M1_str, M2_str, b_str):
     zero_counter = 0
     for i in range(rows):
         for j in range(cols):
-            m1_ = M1_str[i][j].decode().strip("-")
-            m2_ = M2_str[i][j].decode().strip("-")
+            m1_ = M1_str[i][j].item().decode().strip("-")
+            m2_ = M2_str[i][j].item().decode().strip("-")
 
             zero_condition1 = (m1_ == str(0.0) or m1_ == str(0)) and (m2_ == str(0.0) or m2_ == str(0))
 
             if zero_condition1:
                 zero_counter += 1
 
-        b_ = b_str[i][0].decode().strip("-")
+        b_ = b_str[i][0].item().decode().strip("-")
 
         zero_condition2 = (b_ == str(0.0) or b_ == str(0))
 
@@ -1581,8 +1569,8 @@ def write_source_vector(c, source_vector, ofile):
     print("! Source Vector Definition", file=elmer_file)
     print("! -----------------------------------------------------------------------------", file=elmer_file)
     for i, source_name in enumerate(source_vector):
-        if(source_name[0].decode() != str(0.0)) and (source_name[0].decode() != str(0)):
-            print("$ C." + str(c.index) + ".source." + str(i+1) + " = \"" + source_name[0].decode().strip("-") +
+        if(source_name[0].item().decode() != str(0.0)) and (source_name[0].item().decode() != str(0)):
+            print("$ C." + str(c.index) + ".source." + str(i+1) + " = \"" + source_name[0].item().decode().strip("-") +
                   "_Source\"", file=elmer_file)
     print("", file=elmer_file)
     elmer_file.close()
@@ -1603,10 +1591,10 @@ def write_kcl_equations(c, num_nodes, num_variables, elmer_Amat, elmer_Bmat, ofi
     num_variables : int
         number of variables/uknowns in circuit definition
 
-    elmer_Amat : numpy.chararray
+    elmer_Amat : numpy.ndarray of `bytes` strings
         Elmer format damping matrix
 
-    elmer_Bmat : numpy.chararray
+    elmer_Bmat : numpy.ndarray of `bytes` strings
         Elmer format stiffness matrix
 
     ofile : str
@@ -1624,16 +1612,16 @@ def write_kcl_equations(c, num_nodes, num_variables, elmer_Amat, elmer_Bmat, ofi
 
     for i in range(num_nodes - 1):
         for j in range(num_variables):
-            if (elmer_Bmat[i][j].decode() != str(0)) and (elmer_Bmat[i][j].decode() != str(0.0)):
+            if (elmer_Bmat[i][j].item().decode() != str(0)) and (elmer_Bmat[i][j].item().decode() != str(0.0)):
                 print("$ C." + str(c.index) + ".B(" + str(i) + "," + str(j) + ")" + " = "
-                      + str(elmer_Bmat[i][j].decode()),
+                      + str(elmer_Bmat[i][j].item().decode()),
                       file=elmer_file)
 
     for i in range(num_nodes - 1):
         for j in range(num_variables):
-            if (elmer_Amat[i][j].decode() != str(0)) and (elmer_Amat[i][j].decode() != str(0.0)):
+            if (elmer_Amat[i][j].item().decode() != str(0)) and (elmer_Amat[i][j].item().decode() != str(0.0)):
                 print("$ C." + str(c.index) + ".A(" + str(i) + "," + str(j) + ")" + " = "
-                      + str(elmer_Amat[i][j].decode()),
+                      + str(elmer_Amat[i][j].item().decode()),
                       file=elmer_file)
 
     print("", file=elmer_file)
@@ -1658,10 +1646,10 @@ def write_kvl_equations(c, num_nodes, num_edges, num_variables, elmer_Amat, elme
     num_variables : int
         number of variables/uknowns in circuit definition
 
-    elmer_Amat : numpy.chararray
+    elmer_Amat : numpy.ndarray of `bytes` strings
         Elmer format damping matrix
 
-    elmer_Bmat : numpy.chararray
+    elmer_Bmat : numpy.ndarray of `bytes` strings
         Elmer format stiffness matrix
 
     unknown_names : list of str
@@ -1699,8 +1687,8 @@ def write_kvl_equations(c, num_nodes, num_edges, num_variables, elmer_Amat, elme
 
     for i in range(range_init, num_edges + range_init):
         for j in range(num_variables):
-            if (elmer_Bmat[i][j].decode().strip("-") != str(0)) and (elmer_Bmat[i][j].decode().strip("-") != str(0.0)):
-                kvl_without_decimal = elmer_Bmat[i][j].decode().split(".")[0]
+            if (elmer_Bmat[i][j].item().decode().strip("-") != str(0)) and (elmer_Bmat[i][j].item().decode().strip("-") != str(0.0)):
+                kvl_without_decimal = elmer_Bmat[i][j].item().decode().split(".")[0]
                 if(j == source_sign_index[j]):
                     if("-" in kvl_without_decimal):
                         print("$ C." + str(c.index) + ".B(" + str(i) + "," + str(j) + ")" + " = "
@@ -1718,9 +1706,9 @@ def write_kvl_equations(c, num_nodes, num_edges, num_variables, elmer_Amat, elme
 
     for i in range(range_init, num_edges + range_init):
         for j in range(num_variables):
-            if (elmer_Amat[i][j].decode().strip("-") != str(0)) and (elmer_Amat[i][j].decode().strip("-") != str(0.0)):
+            if (elmer_Amat[i][j].item().decode().strip("-") != str(0)) and (elmer_Amat[i][j].item().decode().strip("-") != str(0.0)):
                 print("$ C." + str(c.index) + ".A(" + str(i) + "," + str(j) + ")" + " = "
-                      + str(elmer_Amat[i][j].decode()),
+                      + str(elmer_Amat[i][j].item().decode()),
                       file=elmer_file)
     print("", file=elmer_file)
 
@@ -1745,10 +1733,10 @@ def write_component_equations(c, num_nodes, num_edges, num_variables, elmer_Amat
     num_variables : int
         number of variables/uknowns in circuit definition
 
-    elmer_Amat : numpy.chararray
+    elmer_Amat : numpy.ndarray of `bytes` strings
         Elmer format damping matrix
 
-    elmer_Bmat : numpy.chararray
+    elmer_Bmat : numpy.ndarray of `bytes` strings
         Elmer format stiffness matrix
 
     ofile : str
@@ -1770,16 +1758,16 @@ def write_component_equations(c, num_nodes, num_edges, num_variables, elmer_Amat
 
     for i in range(range_init, num_edges + range_init):
         for j in range(num_variables):
-            if (elmer_Bmat[i][j].decode().strip("-") != str(0)) and (elmer_Bmat[i][j].decode().strip("-") != str(0.0)):
-                print("$ C." + str(c.index) + ".B(" + str(i) + "," + str(j) + ")" + " = " + str(elmer_Bmat[i][j].decode()),
+            if (elmer_Bmat[i][j].item().decode().strip("-") != str(0)) and (elmer_Bmat[i][j].item().decode().strip("-") != str(0.0)):
+                print("$ C." + str(c.index) + ".B(" + str(i) + "," + str(j) + ")" + " = " + str(elmer_Bmat[i][j].item().decode()),
                       file=elmer_file)
 
     print("", file=elmer_file)
 
     for i in range(range_init, num_edges + range_init):
         for j in range(num_variables):
-            if (elmer_Amat[i][j].decode().strip("-") != str(0)) and  (elmer_Amat[i][j].decode().strip("-") != str(0.0)):
-                print("$ C." + str(c.index) + ".A(" + str(i) + "," + str(j) + ")" + " = " + str(elmer_Amat[i][j].decode()),
+            if (elmer_Amat[i][j].item().decode().strip("-") != str(0)) and  (elmer_Amat[i][j].item().decode().strip("-") != str(0.0)):
+                print("$ C." + str(c.index) + ".A(" + str(i) + "," + str(j) + ")" + " = " + str(elmer_Amat[i][j].item().decode()),
                       file=elmer_file)
 
     print("", file=elmer_file)
@@ -1827,9 +1815,9 @@ def write_sif_additions(c, source_vector, ofile):
     # store source parameter value
     source_str_values = []
     for source_val in source_vector:
-        if source_val[0].decode() != str(0.0) and source_val[0].decode() != str(0) \
-            and source_val[0].decode() not in source_str_values:
-            source_str_values.append(source_val[0].decode())
+        if source_val[0].item().decode() != str(0.0) and source_val[0].item().decode() != str(0) \
+            and source_val[0].item().decode() not in source_str_values:
+            source_str_values.append(source_val[0].item().decode())
 
 
     elmer_file = open(ofile, 'a')
@@ -2020,13 +2008,13 @@ def write_elmer_circuit_file(c, elmerA, elmerB, elmersource, unknown_names, num_
     c : dict
         A dictionary of Circuit instances
 
-    elmerA : numpy.chararray
+    elmerA : numpy.ndarray of `bytes` strings
         Elmer format damping matrix
 
-    elmerB : numpy.chararray
+    elmerB : numpy.ndarray of `bytes` strings
         Elmer format stiffness matrix
 
-    elmersource : numpy.chararray
+    elmersource : numpy.ndarray of `bytes` strings
         Elmer format source vector
 
     unknown_names : list of str
